@@ -2,10 +2,10 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform, easeInOut } from "framer-motion";
 import "./FeaturedProjects.css";
 
-import project1 from "../assets/caliberplaza-waresquare.png";
-import project2 from "../assets/gaf-salesexperiencecenter.png";
-import project3 from "../assets/mubadala-businesslifestylecorporateoffice.png";
-import project4 from "../assets/taj-tajresidencies.png";
+import project1 from "../assets/caliberplaza-waresquare.PNG";
+import project2 from "../assets/gaf-salesexperiencecenter.PNG";
+import project3 from "../assets/mubadala-businesslifestylecorporateoffice.PNG";
+import project4 from "../assets/taj-tajresidencies.PNG";
 
 const projects = [
   { id: 1, title: "CALIBER PLAZA - WARESQUARE", image: project1 },
