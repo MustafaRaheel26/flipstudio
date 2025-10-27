@@ -1,0 +1,257 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap");
+@import url("https://fonts.cdnfonts.com/css/creato-display");
+@import url("https://fonts.cdnfonts.com/css/caghen");
+
+:root {
+  --nav-height: 80px;
+  --fg: #fff;
+  --bg-top: rgba(0, 0, 0, 0.35);
+  --bg-scrolled: #000;
+}
+
+/* Base Navbar Styling */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease;
+  backdrop-filter: blur(10px);
+  background: var(--bg-top);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.navbar--scrolled {
+  background: var(--bg-scrolled);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.navbar-inner {
+  width: 92%;
+  max-width: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand Logo (FLIP STUDIO side by side, no gap) */
+.brand {
+  text-decoration: none;
+  color: var(--fg);
+  user-select: none;
+}
+
+.brand-horizontal {
+  display: flex;
+  align-items: baseline;
+  gap: 0; /* ← removed spacing between FLIP and STUDIO */
+}
+
+.brand-flip {
+  font-family: "Creato Display", sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: 0.12em;
+  line-height: 1;
+}
+
+.brand-studio {
+  font-family: "Caghen Demo", serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1;
+  margin-left: 2px; /* ← subtle spacing for readability */
+}
+
+/* Brand animation (staggered FLIP → STUDIO) */
+.brand-letter-container {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 1em;
+}
+
+.brand-letter,
+.brand-letter-clone {
+  display: inline-block;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--delay);
+}
+
+.brand-letter-clone {
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+
+/* On hover — smooth stairway rise */
+.brand:hover .brand-letter {
+  transform: translateY(-100%);
+}
+
+.brand:hover .brand-letter-clone {
+  transform: translateY(-100%);
+}
+
+/* Navigation Links */
+.nav-section {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--fg);
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 6px 8px;
+  border-radius: 8px;
+  overflow: visible;
+  position: relative;
+}
+
+/* Letter Animation for Nav Links */
+.letter-container {
+  display: inline-block;
+  position: relative;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.letter,
+.letter-clone {
+  display: inline-block;
+  position: relative;
+  transform: translateY(0);
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--delay);
+}
+
+.letter-clone {
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+
+/* Hover animation — vertical stairway with smooth rise */
+.nav-link:hover .letter {
+  transform: translateY(-100%);
+}
+
+.nav-link:hover .letter-clone {
+  transform: translateY(-100%);
+}
+
+/* Hamburger Button (Mobile Only) */
+.hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.hamburger-box {
+  width: 26px;
+  height: 18px;
+  position: relative;
+}
+
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  transition: transform 0.25s ease;
+}
+
+.hamburger-inner {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hamburger-inner::before {
+  top: -6px;
+}
+
+.hamburger-inner::after {
+  top: 6px;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+}
+
+.mobile-menu.is-active {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.mobile-menu-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.mobile-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.mobile-link {
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 980px) {
+  .nav-section {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .brand-flip {
+    font-size: 24px;
+  }
+
+  .brand-studio {
+    font-size: 18px;
+  }
+}
